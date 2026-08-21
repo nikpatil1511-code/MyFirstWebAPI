@@ -8,7 +8,7 @@ namespace MyFirstWebAPI.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;     //Database connection
 
         public StudentController(ApplicationDbContext db)
         {
