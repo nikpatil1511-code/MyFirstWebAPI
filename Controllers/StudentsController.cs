@@ -10,7 +10,7 @@ namespace MyFirstWebAPI.Controllers
     {
         private readonly ApplicationDbContext _db;     //Database connection
 
-        public StudentController(ApplicationDbContext db)
+        public StudentController(ApplicationDbContext db)     //constructor
         {
             _db = db;
         }
