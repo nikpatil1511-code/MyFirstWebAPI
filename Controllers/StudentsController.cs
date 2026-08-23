@@ -51,6 +51,38 @@ namespace MyFirstWebAPI.Controllers
             await _db.SaveChangesAsync();
 
             return Ok("Student updated: " + student.Name);
+
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PartiallyUpdate(int id, [FromBody] Dictionary<string, object>partialUpdate)
+        {
+            var student = await _db.Students.FirstOrDefaultAsync(s => s.Id == id);
+            if (student == null)
+            {
+                return Ok("Student Not Found");
+
+            }
+           foreach(var feild in partialUpdate)
+            {
+                var jsonValue = (System.Text.Json.JsonElement)feild.Value;
+
+                switch (feild.Key.ToLower())
+                {
+                    case "name":
+                        student.Name = jsonValue.GetString();
+                        break;
+                    case "marks":
+                        student.Marks = jsonValue.GetInt32();
+                        break;
+
+
+
+                }
+            }
+
+            await _db.SaveChangesAsync();
+            return Ok("Student is updated" + student.Name);
         }
 
         [HttpDelete("{id}")]
