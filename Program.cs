@@ -19,8 +19,10 @@ builder.Services.AddControllers();
 //var conn = builder.Configuration.GetConnectionString("DefaultConnection") ?? "Data Source=products.db";
 //builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(conn));
 //builder.Services.AddScoped<IProductRepository, EfCoreProductRepository>();
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//    options.UseSqlite("Data Source=students.db"));
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite("Data Source=students.db"));
+    options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MyFirstWebAPIDb;Trusted_Connection=True;"));
 
 var app = builder.Build();
 
